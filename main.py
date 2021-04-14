@@ -1,5 +1,6 @@
 import telebot
 import config  # Переменные
+
 bot = telebot.TeleBot(config.token_bot)
 keyboard1 = telebot.types.ReplyKeyboardMarkup(True, True)
 keyboard1.row('Зарегистрировать обращение')
@@ -29,6 +30,7 @@ def help_request(message):
                 f' {message.from_user.last_name}'
     bot.send_message(message.from_user.id, 'Ваша заявка принята, ожидайте ответа от IT отдела')
     bot.send_message(config.chat_id, f'{user_name} отправил запрос: {message.text}')
+    # config.sql_work(1, message.from_user.first_name, message.from_user.last_name, 'Обращение в тех. поддержку', message)
 
 
 bot.infinity_polling()
