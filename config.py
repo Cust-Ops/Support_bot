@@ -21,5 +21,5 @@ def create_issue(message, summary, nickname):
             "name": "Task"
         },
          'summary': f'{summary}',
-         'description': f"{message}\nНикнейм от аккаунта телеграма: @{nickname}",
+         'description': f"{message}\nТелеграмм аккаунт для связи: @{nickname}",
     })
