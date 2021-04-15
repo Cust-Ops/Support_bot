@@ -1,42 +1,25 @@
-import sqlite3 as sql # БД
+from atlassian import Jira
 
 token_bot = '1721490273:AAFfuOmgC_nQWmhaLTyKmsND11EjMWwCNTc'
 chat_id = '-1001255614977'
+url_create = 'https://cirex.atlassian.net/'
+jira_t_api_token = 'aCwkZaqDQlKIwbNxqUdR5D67'
+jira_c_api_token = '1Ka7FVtPJBtnzuxBcykJBF01'
+request_type = int
 
 
-"""def generator_id(last_id):
-    if len(last_id) == 0:
-        last_id = 0
-        new_id = last_id + 1
-    else:
-        new_id = last_id[-1] + 1
-    return new_id"""
+def create_issue(message, summary, nickname):
+    jira = Jira(
+        url=f'{url_create}',
+        username='Keptcmeck@bk.ru',
+        password=f'{jira_c_api_token}',
+        cloud=True)
 
-
-"""def sql_work(choice, name, surname, type_request, message):
-    con = sql.connect('HelpBot.db')
-    with con:
-        cur = con.cursor()
-        cur.execute("CREATE TABLE IF NOT EXISTS `HelpBot` ('id' INTEGER,`name` STRING, `surname` STRING, "
-                    "'type' STRING, 'message' STRING)")
-        cur.execute("SELECT id FROM 'HelpBot'")
-        last_id = cur.fetchall()
-        generator_id(last_id)
-    with con:
-        cur = con.cursor()
-        if choice == 1:
-            cur.execute(f"INSERT INTO `HelpBot` VALUES ('{last_id}', '{name}', '{surname}', '{type_request}', "
-                        f"'{message}')")
-        elif choice == 2:
-            cur.execute("SELECT * FROM `HelpBot`")
-            rows = cur.fetchall()
-            for row in rows:
-                print(row[0], row[1])
-        else:
-            print("Вы ошиблись")
-
-        con.commit()
-        cur.close()"""
-
-
-# sql_work(1, 'Alex', 'Bovin', '123', '123')
+    jira.issue_create(fields={
+        'project': {'id': '10000'},
+        'issuetype': {
+            "name": "Task"
+        },
+         'summary': f'{summary}',
+         'description': f"{message}\nНикнейм от аккаунта телеграма: @{nickname}",
+    })
