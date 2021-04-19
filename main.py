@@ -10,7 +10,7 @@ keyboardIT.row('Ответ на запрос')
 
 @bot.message_handler(commands=['start'])
 def start_message(message):
-    bot.send_message(message.from_user.id, 'Используйте клавиатуру для навигации по функциям бота.',
+    bot.send_message(message.from_user.id, 'Используйте кнопки для навигации по функциям бота.',
                      reply_markup=keyboard1)
 
 

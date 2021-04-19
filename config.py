@@ -16,7 +16,7 @@ def create_issue(message, summary, nickname):
         cloud=True)
 
     jira.issue_create(fields={
-        'project': {'id': '10000'},
+        'project': {'id': '10002'},
         'issuetype': {
             "name": "Task"
         },
