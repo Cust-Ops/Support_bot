@@ -1,2 +1,2 @@
 # Support_bot
-Бот технической поддержки пользователей
+Bot for create TT from user to IT_CustOps
